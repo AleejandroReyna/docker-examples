@@ -1,0 +1,13 @@
+1. El dockerfile siempre tendrá una sentencia FROM como inicio del archivo donde se especifica la imagen a usar
+
+ej: FROM alpine:latest
+
+2. Con LABEL Author podemos especificar quien se encargará de el mantenimiento de la imagen
+
+3. Con RUN se ejecutan comandos en el contenedor que se crea a través del dockerfile
+
+4. Con el comando docker build -t <name #nombre nuevo > . en la carpeta donde se encuentra el dockerfile creará la imagen a partir del dockerfile establecido
+
+5. Cuando la imagen ya haya sido creada, puede utilizarse con el comando docker run -d -P <id> || <name>
+
+6. Acceder con el cliente ssh 

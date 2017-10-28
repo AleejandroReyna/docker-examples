@@ -1,0 +1,60 @@
+#crear imágenes con software propio
+
+1. Crear contenedor con imagen cualquiera
+
+2. Convertir contenedor en imagen para uso común
+
+docker commit -a "Author Name <author@email.com>"  -m "message from commit image" <id> || <name> new/image-name:tags
+
+#buscar imágenes con docker hub
+
+docker search <search-name>
+
+#filtrar búsqueda con estrellas 
+
+docker search -s <number> <search-name>
+
+#eliminar imágenes
+
+docker rmi <id> || <name>
+
+#Aprovicionar contenedores
+
+1. Crear contenedor interactivo (-it /bin/bash)
+
+2. instalar openssh server (apt-get install openssh-server) y sudo
+
+3. crear carpeta /var/run/sshd
+
+4. crear usuario (adduser alejandro password alejandro password conf alejandro)
+
+5. instalar vim  o nano
+
+
+6. abrir visudo
+
+7. Darle permisos a todos los usuarios root 
+
+8. editar el archivo /etc/group agregando <user> al grupo sudo
+
+9. comando groups <user> para ver en que grupos está agregado el usuario
+
+10. editar el archivo de configuración de ssh para activar el usuario. /etc/ssh/sshd_config
+
+10.5 crear ssh-key con ssh-keygen (en caso no existir)
+
+ej: ssh-keygen -b 2048 -t rsa -f /folder/in/sshd_config -q
+
+11. crear imagen a partir de contenedor (docker commit etc)
+
+12. Crear contenedor con proceso en -d y subproceso en -D y puerto (docker run -d -p 22 image /usr/sbin/sshd -D)
+
+// 12 //
+
+  Se puede asignar un puerto por defecto, en este caso el servidor ssh en la máquina virtual (que funcionará de servidor) corre en el puerto 22, así que si queremos que en nuestra máquina de uso (que sería el cliente) el puerto responda en el puerto 50000, puede asignarse con el flag -p 50000:22 (clientPort:serverPort)
+
+13. Verificar que ip utilizar para acceder al contenedor activo (docker inspect --format='{{.NetworkSettings.Networks.bridge.IPAddress}}' <id> || <name>)
+
+  tambien es posible con: docker inspect <id> || <name> | grep IPAddress
+
+14. Ahora puede accederse a través de ssh con el comando ssh user@ipaddress

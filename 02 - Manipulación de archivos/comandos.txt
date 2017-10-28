@@ -1,0 +1,19 @@
+#leer archivos externos desde una imagen docker 
+
+cat archivo.txt | docker run -i debian wc -l #Cuenta las líneas de un archivo de texto
+
+#ver el listado de ids de todos los contenedores creados
+
+docker ps -a -q
+
+#ver el listado de ids completos
+
+docker ps -a -q --no-trunc
+
+#ver el último contenedor ejecutado
+
+docker ps -a -q -l
+
+#eliminar todos los contenedores con parametrización (el último, con -l)
+
+docker rm -f $(docker ps -a -q)

@@ -1,0 +1,71 @@
+#Correr un comando en debian 
+
+docker run debian echo "hello"
+
+#listar imágenes
+
+docker images
+
+#listar contenedores activos
+
+docker ps
+
+#listar contenedores detenidos
+
+docker ps -a
+
+#correr contenedor interactivo usando la consola
+
+docker run -i debian /bin/sh
+
+#correr contenedor con terminal directamente
+
+docker run -t debian /bin/sh  #no corre ls, ni exit, y deja el contenedor activo
+
+#terminar la ejecución de un contenedor activo
+
+docker stop <id> || <name>
+
+#borrar contenedor
+
+docker rm <id> || <name>
+
+#crear contenedor y ejecutar terminal automáticamente
+
+docker run -it debian /bin/sh
+
+#correr contenedor existente
+
+docker start <id> || <name>
+
+#unirse al contenedor activo
+
+docker attach <id> || <name>
+
+#Crear contenedor sin correrlo automáticamente
+
+docker create -it debian /bin/sh
+
+#ver contenedores con ids completos
+
+docker ps -a --no-trunc
+
+#ejecutar comandos directamente en un contenedor activo
+
+docker exec <id> || <name> <command>
+
+#ejecutar comandos directamente abriendo consola interactiva
+
+docker exec -it <id> || <name> <command>
+
+#eliminar contenedor activo
+
+docker rm -f <id> || <name>
+
+#crear contenedor con nombre personalizado y correr automático
+
+docker run -it --name=Alejo debian /bin/sh
+
+#crear un contenedor y eliminarlo tras la ejecución
+
+docker run -rm debian /bin/bash #abrir consola
